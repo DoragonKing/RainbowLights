@@ -1,0 +1,49 @@
+#include <Adafruit_NeoPixel.h>
+#define PIN      8
+#define N_LEDS 20
+
+ 
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, PIN, NEO_GRB + NEO_KHZ800);
+int dura=60;
+void setup() {
+  strip.begin();
+}
+ 
+void loop() {
+ 
+    for(int n=0;n<20;n++)
+  {
+ strip.setPixelColor(n,0, 0, 255);// blue
+  
+ strip.show();
+    }
+  
+  
+  
+  for(int c=0;c<dura;c++){
+    for(int n=0;n<20;n++){
+    
+int red=map(c,0,dura,0,255);
+int blue=map(c,0,dura,255,0);
+strip.setPixelColor(n,red, 0, blue);// blue
+  
+ strip.show();
+ 
+    }
+   
+  }
+  
+  for(int c=0;c<dura;c++){
+     for(int n=0;n<20;n++){
+
+int green=map(c,0,dura,0,255);
+int redneg=map(c,0,dura,255,0);
+strip.setPixelColor(n,redneg, green, 0);// blue
+  
+ strip.show();
+ 
+    }
+  }
+
+}
+

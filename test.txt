@@ -1,0 +1,28 @@
+#define redpin 9
+#define bluepin 10
+#define greenpin 11
+int d=20;
+
+void setup()
+{
+pinMode(redpin, OUTPUT);
+pinMode(greenpin, OUTPUT);
+pinMode(bluepin, OUTPUT);
+}
+
+
+void loop()
+{
+int r,g,b;
+
+for(b=0;b<255;b++){
+analogWrite(bluepin,b);
+analogWrite(redpin,255-b);
+delay(d);
+}
+for(b=255;b>0;b--){
+analogWrite(bluepin,b);
+analogWrite(redpin,255-b);
+delay(d);
+}
+}

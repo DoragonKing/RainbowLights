@@ -1,0 +1,29 @@
+#define redpin 12
+#define bluepin 10
+#define greenpin 11
+int stage;
+int d=400;
+void setup()
+{
+pinMode(redpin, OUTPUT);
+pinMode(greenpin, OUTPUT);
+pinMode(bluepin, OUTPUT);
+}
+
+
+void loop()
+{
+   analogWrite(greenpin,0);
+   analogWrite(redpin,255);
+   delay(d);
+   analogWrite(bluepin,255);
+   delay(d);
+   analogWrite(redpin,0);
+   delay(d);
+   analogWrite(greenpin,255);
+   delay(d);
+   analogWrite(bluepin,0);
+   delay(d);
+   analogWrite(redpin,255);
+   delay(d);
+}

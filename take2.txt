@@ -1,0 +1,90 @@
+#define redpin 5
+#define bluepin 3
+#define greenpin 6
+int d=1;
+int temppin=0;
+int temp;
+
+void setup()
+{
+pinMode(redpin, OUTPUT);
+pinMode(greenpin, OUTPUT);
+pinMode(bluepin, OUTPUT);
+Serial.begin(9600);
+}
+
+
+void loop()
+{
+tempmeasure();
+ if(temp<25||temp>27){
+int  red=map(temp,20,36,0,255);
+int  blue=map(temp,20,36,255,0);
+ analogWrite(redpin,red);
+ analogWrite(bluepin,blue);
+ } 
+ else{
+colourchange();
+}
+}
+
+
+
+
+void tempmeasure(){
+
+temp=analogRead(temppin); // Reading data from the sensor.This voltage is stored as a 10bit number
+//temp=26;
+temp=(5.0*temp*1000.0)/(1024*10)-50;
+
+ /*5*temp/1024 is to convert the 10 bit number to a voltage reading.
+
+This is multiplied by 1000 to convert it to millivolt.
+
+We then divide it by 10 beacuse each degree rise results in a 10 millivolt increase.
+*/
+
+
+Serial.println(temp);
+
+delay(100);// This is because we dont want a continuous stream of data
+  
+}
+
+void colourchange(){int r,g,b;
+analogWrite(bluepin,255);
+for(r=0;r<255;r++){
+analogWrite(redpin,r);
+analogWrite(bluepin,255);
+
+delay(d);
+
+}
+for(b=255;b>0;b--){
+analogWrite(bluepin,b);
+
+delay(d);
+
+}
+for(g=0;g<255;g++){
+analogWrite(greenpin,g);
+
+delay(d);
+}
+for(r=255;r>0;r--){ 
+analogWrite(redpin,r);
+
+delay(d);
+
+}
+for(b=0;b<255;b++){
+analogWrite(bluepin,b);
+
+delay(d);
+}
+for(g=255;g>0;g--){ 
+analogWrite(greenpin,g);
+
+delay(d);
+
+}}
